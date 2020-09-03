@@ -41,6 +41,6 @@ The optimizations are mostly memory vs speed where memory usage growth is in acc
 significant. First I've done a version without helper matrices, which recreates picture object after each seam removal and 
 recalculates all the energy for each find call. This one improves on speed by orders of magnitude.
 
-**edu.princeton.cs.algs4. Picture library is contained in algs4.jar which is downloadable on this link :** https://algs4.cs.princeton.edu/code/
+**edu.princeton.cs.algs4.Picture** library is contained in algs4.jar which is downloadable on this link : https://algs4.cs.princeton.edu/code/
 
 Coursera assignment page link : https://coursera.cs.princeton.edu/algs4/assignments/seam/specification.php
