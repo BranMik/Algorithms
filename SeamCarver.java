@@ -38,7 +38,6 @@ public class SeamCarver {
    public SeamCarver(Picture picture) {
 	   if(picture == null) throw new IllegalArgumentException(); 
 	   this.pictureData = new Picture(picture);
-	   pictureData.save("chukCheck.jpg");
 	   currentPictureWidth = this.pictureData.width();
 	   currentPictureHeight =  this.pictureData.height();
 	   lastHorizontalSeamRemoved = new int[currentPictureWidth];
