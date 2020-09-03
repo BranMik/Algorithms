@@ -305,7 +305,6 @@ public class SeamCarver {
 	   
 	   Picture pic = new Picture(inputFile);
 	   SeamCarver scObject = new SeamCarver(pic);
-	   /*scObject.pictureData.save("pic1Experiment.jpg");
 	   System.out.print("\nHorizontal seams removing :");
 	   for(int x = 0 ; x < horizontalRemoved ; x++) {
 		   System.out.print(horizontalRemoved - x + ",");
@@ -319,6 +318,6 @@ public class SeamCarver {
 		   scObject.removeVerticalSeam(seam);
 	   }
 	   scObject.picture().save(outputFile);
-	   System.out.println("\nEnd.\nPicture saved as " + outputFile);*/
+	   System.out.println("\nEnd.\nPicture saved as " + outputFile);
    }
 }
