@@ -29,9 +29,9 @@ I optimized the program for speed, as much as I could, and it performed competen
 Some optimizations I made are :
 - Picture object (pictureData variable) is not updated(recreated) until it's fetched by picture() method. 
 Instead intermediary and current data about picture are held in helper matrices.
-- Matrices are iterated in a matrixRow*matrixColumn fashion as much as possible to make the code cache friendly.
-They are also designed with this in mind (verEnergyMatrix is pixelWidth*pixelHeight, while horEnergyMatrix is 
-pixelHeight*pixelWidth).
+- Matrices are iterated in a matrixRow * matrixColumn fashion as much as possible to make the code cache friendly.
+They are also designed with this in mind (verEnergyMatrix is pixelWidth * pixelHeight, while horEnergyMatrix is 
+pixelHeight * pixelWidth).
 - Conditionals are as much as possible removed from inner loops, and edge cases (border rows/columns) calculated separately
 outside of them.
 - Pixels energy is kept in class fields(2d arrays) so once calculated, only a part of values have to be recalculated after 
