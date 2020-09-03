@@ -34,7 +34,7 @@ They are also designed with this in mind (verEnergyMatrix is pixelWidth * pixelH
 pixelHeight * pixelWidth).
 - Conditionals are as much as possible removed from inner loops, and edge cases (border rows/columns) calculated separately
 outside of them.
-- Pixels energy is kept in class fields(2d arrays) so once calculated, only a part of values have to be recalculated after 
+- Pixels energies are kept in class fields(2d arrays) so once calculated, only a part of values have to be recalculated after 
 removals.
 
 The optimizations are mostly memory vs speed where memory usage growth is in acceptable range, and speed increase is quite
@@ -42,3 +42,4 @@ significant. First I've done a version without helper matrices, which recreates 
 recalculates all the energy for each find call. This one improves on speed by orders of magnitude.
 
 **edu.princeton.cs.algs4. Picture library is contained in algs4.jar which is downloadable on this link :** https://algs4.cs.princeton.edu/code/
+Coursera assignment page link : https://coursera.cs.princeton.edu/algs4/assignments/seam/specification.php
