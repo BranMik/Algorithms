@@ -20,7 +20,7 @@ When considering the code one should have in mind that standard picture/pixel re
 equals to columns * rows, and that is opposite to standard 2d array nomenclature ([row][column]). 
 Furthermore to perform cache friendly iterations horEnergyMatrix have this order reversed. 
 
-**Also a thing to pay attention to is that Picture object is created from the picture with width always larger than
+**Also a thing to pay attention to is that Picture object is created with the picture having width always larger than
 height, so if original picture have height larger, it will be rotated and original height will in fact become
 width. This is a thing of Picture class implementation from algs4.jar library, or maybe of standard Java BufferedImage 
  or ImageIO classes that are used by Picture class. Anyways this effect is not result of this class implementation.** 
