@@ -230,8 +230,8 @@ public class SeamCarver {
    }
 
    /**
-    *  Removes horizontal seam from current picture
-    *  Updates just the helper matrices (energyMatrix and pixelsMatrix).Removal is done just by shifting values after 
+    *  Removes horizontal seam from current picture.
+    *  Updates just the helper matrices (energyMatrix and pixelsMatrix). Removal is done just by shifting values after 
     *  the removed pixel. Pixels before it are not touched and pixels after the new currentPictureHeight value are 
     *  ignored from now on, instead of reinitializing the whole matrix to new size.
     *  
@@ -291,7 +291,7 @@ public class SeamCarver {
     *   e.g. java -cp c:\\utils\algs4.jar SeamCarver.java somePicture.jpg somePictureCarved.jpg 20 10
     *   
     *   Interesting thing to observe is how the vertical removal is slower than horizontal one. That is the case because
-    *   the pixelsMatrix matrix have to be updated, and in vertical removal it has to be updated in matrixColumn*matrixRow
+    *   the pixelsMatrix matrix has to be updated, and in vertical removal it has to be done in matrixColumn*matrixRow
     *   order which is not conformant with cache-lines. That is one place in code where I couldn't make it respect cache-lines 
     *   iteration (Other solutions I can think of would just be less optimized, like not using that matrix at all).
     *
