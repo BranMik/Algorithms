@@ -18,7 +18,7 @@ because each pixel/node is connected to three neighbouring pixels in previous an
 
 When considering the code one should have in mind that standard picture/pixel representation is width * height which 
 equals to columns * rows, and that is opposite to standard 2d array nomenclature ([row][column]). 
-Furthermore to perform cache friendly iterations verEnergyMatrix have this order reversed. Thus could quickly
+Furthermore to perform cache friendly iterations verEnergyMatrix have this order reversed. Thus one can quickly
 get confused what is row and what a column in a specific matrix.
 
 **Also a thing to pay attention to is that Picture object is created with the picture having width always larger than
