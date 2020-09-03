@@ -4,7 +4,7 @@
 
 This is my implementation of Seam Carver algorithm which performs content-aware image scaling.
 It was made for Algorithms II course on Coursera as an assignment. 
-It uses a combination of dynamic programming and topological sort variant of Dykstra algorithm for finding shortest
+It uses a combination of dynamic programming and topological sort variant of Dijkstra algorithm for finding shortest
 paths in DAGs. Seam in this context is just the sequence of neighbouring pixel indices to remove (one pixel for each
 row or column, depending if you are removing horizontal or vertical seam).
 
