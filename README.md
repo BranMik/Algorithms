@@ -16,8 +16,8 @@ Functionaly it's the same thing, just slightly different implementation. You don
 because each pixel/node is connected to three neighbouring pixels in previous and three in next row of the matrix 
 (column for horizontal seam), except for bordering rows/columns.
 
-When considering the code one should have in mind that standard picture/pixel representation is width*height which 
-equals to columns*rows, and that is opposite to standard 2d array nomenclature ([row][column]). 
+When considering the code one should have in mind that standard picture/pixel representation is width * height which 
+equals to columns * rows, and that is opposite to standard 2d array nomenclature ([row][column]). 
 Furthermore to perform cache friendly iterations horEnergyMatrix have this order reversed. 
 
 **Also a thing to pay attention to is that Picture object is created from the picture with width always larger than
