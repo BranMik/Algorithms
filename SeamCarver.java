@@ -307,14 +307,12 @@ public class SeamCarver {
 	   System.out.print("\nHorizontal seams removing :");
 	   for(int x = 0 ; x < horizontalRemoved ; x++) {
 		   System.out.print(horizontalRemoved - x + ",");
-		   int[] seam = scObject.findHorizontalSeam();
-		   scObject.removeHorizontalSeam(seam);
+		   scObject.removeHorizontalSeam(scObject.findHorizontalSeam());
 	   }
 	   System.out.print("\nVertical seams removing :");
 	   for(int x = 0 ; x < verticalRemoved ; x++) {
 		   System.out.print(verticalRemoved - x + ",");
-		   int[] seam = scObject.findVerticalSeam();
-		   scObject.removeVerticalSeam(seam);
+		   scObject.removeVerticalSeam(scObject.findVerticalSeam());
 	   }
 	   scObject.picture().save(outputFile);
 	   System.out.println("\nEnd.\nPicture saved as " + outputFile);
