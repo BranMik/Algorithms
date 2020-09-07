@@ -72,7 +72,7 @@ public class SeamCarver {
 	 */
    public Picture picture() {
 	   
-	   // A seam was removed from the picture so the pictureData object of type Picture has to be transposed.
+	   // A seam was removed from the picture so the pictureData object of type Picture object has to be recreated.
 	   if(!pictureObjIsValid) { 
 		   Picture newPic = new Picture(currentPictureWidth,currentPictureHeight);
 		   for(int x = 0 ; x < currentPictureWidth ; x++) {
