@@ -11,18 +11,19 @@ import edu.princeton.cs.algs4.Picture;
 public class SeamCarver {
 	   
    private final float BORDER_PIXEL_MAX_ENERGY = 1000f;
+	
    private Picture pictureData;
-   private boolean pictureObjIsValid = true;
-   private boolean isEnergyCalculated = false;
+   private boolean pictureObjIsValid;
+   private boolean isEnergyCalculated;
    
    //getRgb() values for current state of pictureData. 
    private int[][] pixelsMatrix;
    
    //Horizontal energy values for current state of pictureData. Empty until first horizontal find seam execution.
-   private float[][] horEnergyMatrix = null;
+   private float[][] horEnergyMatrix;
    
    //Vertical energy values for current state of pictureData. Empty until first vertical find seam execution.
-   private float[][] verEnergyMatrix = null;
+   private float[][] verEnergyMatrix;
    
    private int currentPictureWidth;
    private int currentPictureHeight;
@@ -30,31 +31,20 @@ public class SeamCarver {
    private int[] lastHorizontalSeamRemoved;
    private int[] lastVerticalSeamRemoved;
    
-   /**
-	 * Constructor creates picture object (pictureData) from picture argument and initializes some variables. 
-	 * 
-	 * @param picture Picture object passed in for seam removal.
-	 */
+  /**
+   * Constructor creates picture object (pictureData) from picture argument and initializes some variables. 
+   * 
+   * @param picture Picture object passed in for seam removal.
+   */
    public SeamCarver(Picture picture) {
 	   if(picture == null) throw new IllegalArgumentException(); 
 	   this.pictureData = new Picture(picture);
-	   currentPictureWidth = this.pictureData.width();
-	   currentPictureHeight =  this.pictureData.height();
-	   lastHorizontalSeamRemoved = new int[currentPictureWidth];
-	   lastVerticalSeamRemoved = new int[currentPictureHeight];
-	   initPixelsMatrix();
-   }
-
-   private void initPixelsMatrix() {
-	   pixelsMatrix=new int[currentPictureWidth][currentPictureHeight];
-	   for(int x = 0 ; x < currentPictureWidth ; x++) {
-		   for(int y = 0 ; y < currentPictureHeight ; y++) {
-			   pixelsMatrix[x][y] = pictureData.getRGB(x , y);
-		   }
-	   }
+	   resetGlobalVariables();
    }
    
    private void resetGlobalVariables() {
+	   currentPictureWidth = this.pictureData.width();
+	   currentPictureHeight =  this.pictureData.height();
 	   initPixelsMatrix();
 	   horEnergyMatrix = null;
 	   verEnergyMatrix = null;
@@ -64,12 +54,22 @@ public class SeamCarver {
 	   isEnergyCalculated = false;
    }
    
+	
+   private void initPixelsMatrix() {
+	   pixelsMatrix=new int[currentPictureWidth][currentPictureHeight];
+	   for(int x = 0 ; x < currentPictureWidth ; x++) {
+		   for(int y = 0 ; y < currentPictureHeight ; y++) {
+			   pixelsMatrix[x][y] = pictureData.getRGB(x , y);
+		   }
+	   }
+   }
+	
    /**
-	 * First creates new picture object from matrices that hold current picture state, and then it
-	 * returns the updated picture.
-	 * 
-	 * @return new picture with seams removed.
-	 */
+    * First creates new picture object from matrices that hold current picture state, and then it
+    * returns the updated picture.
+    * 
+    * @return new picture with seams removed.
+    */
    public Picture picture() {
 	   
 	   // A seam was removed from the picture so the pictureData object of type Picture object has to be recreated.
@@ -135,6 +135,38 @@ public class SeamCarver {
 	   return energy;
    }
    
+   /**
+    * Finding sequence of indices for horizontal seam. Calls generalized findSeam method.
+    *
+    * @return horizontal seam with the least energy
+    */
+   public int[] findHorizontalSeam(){
+	   if(currentPictureHeight == 1 || currentPictureHeight==2 || currentPictureWidth==1 || currentPictureWidth==2) {
+		   return new int[currentPictureWidth]; 
+	   }else { 
+		   if(horEnergyMatrix == null) {
+			   horEnergyMatrix = new float[currentPictureWidth][currentPictureHeight];
+		   }
+		   return findSeam(lastHorizontalSeamRemoved , horEnergyMatrix , currentPictureHeight , currentPictureWidth , true);
+	   }
+   }
+   
+   /**
+    * Finding sequence of indices for vertical seam. Calls generalized findSeam method.
+    *
+    * @return vertical seam with the least energy
+    */
+   public int[] findVerticalSeam() {
+	   if(currentPictureHeight == 1 || currentPictureHeight==2 || currentPictureWidth==1 || currentPictureWidth==2) {
+		   return new int[currentPictureHeight];
+	   }else {
+		   if(verEnergyMatrix == null) {
+			   verEnergyMatrix = new float[currentPictureHeight][currentPictureWidth];
+		   }
+		   return findSeam(lastVerticalSeamRemoved , verEnergyMatrix , currentPictureWidth , currentPictureHeight , false);
+	   }
+   }
+	
    /*
     * Generalized findSeam method. Works for both horizontal and vertical seam removals, gets called with different 
     * references as arguments for different cases.
@@ -194,38 +226,6 @@ public class SeamCarver {
 	   }
 	   isEnergyCalculated = true;
 	   return seam;
-   }
- 
-   /**
-    * Finding sequence of indices for horizontal seam. Calls generalized findSeam method.
-    *
-    * @return horizontal seam with the least energy
-    */
-   public int[] findHorizontalSeam(){
-	   if(currentPictureHeight == 1 || currentPictureHeight==2 || currentPictureWidth==1 || currentPictureWidth==2) {
-		   return new int[currentPictureWidth]; 
-	   }else { 
-		   if(horEnergyMatrix == null) {
-			   horEnergyMatrix = new float[currentPictureWidth][currentPictureHeight];
-		   }
-		   return findSeam(lastHorizontalSeamRemoved , horEnergyMatrix , currentPictureHeight , currentPictureWidth , true);
-	   }
-   }
-   
-   /**
-    * Finding sequence of indices for vertical seam. Calls generalized findSeam method.
-    *
-    * @return vertical seam with the least energy
-    */
-   public int[] findVerticalSeam() {
-	   if(currentPictureHeight == 1 || currentPictureHeight==2 || currentPictureWidth==1 || currentPictureWidth==2) {
-		   return new int[currentPictureHeight];
-	   }else {
-		   if(verEnergyMatrix == null) {
-			   verEnergyMatrix = new float[currentPictureHeight][currentPictureWidth];
-		   }
-		   return findSeam(lastVerticalSeamRemoved , verEnergyMatrix , currentPictureWidth , currentPictureHeight , false);
-	   }
    }
 
    /**
