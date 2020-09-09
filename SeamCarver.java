@@ -45,13 +45,13 @@ public class SeamCarver {
    private void resetGlobalVariables() {
 	   currentPictureWidth = this.pictureData.width();
 	   currentPictureHeight =  this.pictureData.height();
-	   initPixelsMatrix();
 	   horEnergyMatrix = null;
 	   verEnergyMatrix = null;
 	   lastHorizontalSeamRemoved = new int[currentPictureWidth];
 	   lastVerticalSeamRemoved = new int[currentPictureHeight];
 	   pictureObjIsValid = true;
 	   isEnergyCalculated = false;
+	   initPixelsMatrix();
    }
    
 	
