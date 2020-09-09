@@ -176,20 +176,24 @@ public class SeamCarver {
 	   float bestpixelColVal = 0;
 	   
 	   // Fills the least energy matrix.
-	   if(!isEnergyCalculated) {
-		   Arrays.fill(energyMatrix[0], BORDER_PIXEL_MAX_ENERGY);
+	   if(!isEnergyCalculated) { 
+		   Arrays.fill(energyMatrix[0], BORDER_PIXEL_MAX_ENERGY); //First matrixRow is filled outside of the for-loops
 	   }
 	   for(int matrixRow = 1; matrixRow < matrixHeight; matrixRow++) {
 		   int matrixCol; 
 		   if(lastSeamRemoved[matrixRow - 1] - 1 < 1) {
-			   energyMatrix[matrixRow][0] = BORDER_PIXEL_MAX_ENERGY + energyMatrix[matrixRow - 1][1];
+			   energyMatrix[matrixRow][0] = BORDER_PIXEL_MAX_ENERGY + energyMatrix[matrixRow - 1][1]; // First matrixColumn is filled outside of the inner loop
 			   matrixCol = 1;
 		   }else {
 			   matrixCol = (lastSeamRemoved[matrixRow - 1] - 1);
 		   }
-		   energyMatrix[matrixRow][matrixWidth - 1] = BORDER_PIXEL_MAX_ENERGY + energyMatrix[matrixRow - 1][matrixCol - 1];
+		   energyMatrix[matrixRow][matrixWidth - 1] = BORDER_PIXEL_MAX_ENERGY + energyMatrix[matrixRow - 1][matrixCol - 1]; // Last matrixColumn as well
 		   
-		   for(; matrixCol < matrixWidth -1; matrixCol++) {
+		   /*
+		   * Inner loop goes from last updated matrixColumn (or the second column/indx1 for first calculation), to the length-1 index (excl), so border matrixColumns
+		   * are not iterated as they were separately done before the inner loop. This way some conditionals could be removed from inner loop.
+		   */
+		   for(; matrixCol < matrixWidth -1; matrixCol++) { 
 			   float pixelEnergy = (!reversePixels)? (float) this.energy(matrixCol, matrixRow) : (float) this.energy(matrixRow , matrixCol);
 			   energyMatrix[matrixRow][matrixCol] = pixelEnergy + Math.min(energyMatrix[matrixRow - 1][matrixCol - 1],
 						 Math.min(energyMatrix[matrixRow - 1][matrixCol], energyMatrix[matrixRow - 1][matrixCol + 1]));
