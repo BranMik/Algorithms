@@ -10,8 +10,7 @@ row or column, depending if you are removing horizontal or vertical seam).
 
 This problem is similar to classic shortest path problem, just with weights on nodes not edges. For each removal, 
 algorithm needs to find the least energy path from one end of the picture to the other. To understand it more clearly
-one can draw a hypotethical start node that is connected to all the topmost nodes, and one hypotethical end 
-node that all bottom one connect to. Then you have a standard shortest path from a node in a DAG (Directed Acyclic Graph). 
+one can draw a hypotethical start node that is connected to all the topmost nodes. Then you have a single source shortest path from a node in a DAG (Directed Acyclic Graph). 
 Functionaly it's the same thing, just slightly different implementation. You don't have to keep keep adjacency list
 because each pixel/node is connected to three neighbouring pixels in previous and three in next row of the matrix 
 (column for horizontal seam), except for bordering rows/columns.
